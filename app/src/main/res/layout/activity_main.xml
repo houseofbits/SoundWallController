@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/titleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:text="@string/appTitle"
+                android:textColor="@android:color/holo_orange_light"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <Switch
+                android:id="@+id/switch_console"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="5dp"
+                android:checked="false"
+                android:text="Show console "
+                android:textAlignment="textStart"
+                tools:checked="false" />
+
+            <Button
+                android:id="@+id/closeChannelMixerButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="CLOSE"
+                android:visibility="invisible" />
+        </LinearLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include
+        android:id="@+id/mainView"
+        layout="@layout/content_main" />
+
+    <include
+        android:id="@+id/channelMixerView"
+        layout="@layout/channel_mixer"
+        android:visibility="invisible" />
+
+</android.support.design.widget.CoordinatorLayout>

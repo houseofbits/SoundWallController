@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+
+    tools:context=".MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <Button
+                android:id="@+id/channelButton1"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:includeFontPadding="false"
+                android:minHeight="0dp"
+                android:onClick="onClick"
+                android:text="Ch1"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="Ch1"
+                android:textAlignment="center"
+                android:textColor="@android:color/holo_blue_light"
+                android:visibility="gone"
+                tools:layout_editor_absoluteX="7dp"
+                tools:layout_editor_absoluteY="25dp" />
+
+            <SeekBar
+                android:id="@+id/dimmerBar1"
+                style="@android:style/Widget.Material.SeekBar"
+                android:layout_width="393dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:max="255"
+                android:paddingBottom="1dp"
+                android:progress="128"
+                tools:layout_editor_absoluteX="47dp"
+                tools:layout_editor_absoluteY="267dp" />
+
+            <CheckBox
+                android:id="@+id/playCheck1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:onClick="onClick"
+                android:text="Play" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/channelButton2"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:includeFontPadding="false"
+                android:minHeight="0dp"
+                android:onClick="onClick"
+                android:text="Ch2"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="Ch2"
+                android:textAlignment="center"
+                android:textColor="@android:color/holo_blue_light"
+                android:visibility="gone"
+                tools:layout_editor_absoluteX="7dp"
+                tools:layout_editor_absoluteY="25dp" />
+
+            <SeekBar
+                android:id="@+id/dimmerBar2"
+                style="@android:style/Widget.Material.SeekBar"
+                android:layout_width="479dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:max="255"
+                android:paddingBottom="1dp"
+                android:progress="128"
+                tools:layout_editor_absoluteX="47dp"
+                tools:layout_editor_absoluteY="267dp" />
+
+            <CheckBox
+                android:id="@+id/playCheck2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:onClick="onClick"
+                android:text="Play" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/channelButton3"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:includeFontPadding="false"
+                android:minHeight="0dp"
+                android:onClick="onClick"
+                android:text="Ch3"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="Ch3"
+                android:textAlignment="center"
+                android:textColor="@android:color/holo_blue_light"
+                android:visibility="gone"
+                tools:layout_editor_absoluteX="7dp"
+                tools:layout_editor_absoluteY="25dp" />
+
+            <SeekBar
+                android:id="@+id/dimmerBar3"
+                style="@android:style/Widget.Material.SeekBar"
+                android:layout_width="479dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:max="255"
+                android:paddingBottom="1dp"
+                android:progress="128"
+                tools:layout_editor_absoluteX="47dp"
+                tools:layout_editor_absoluteY="267dp" />
+
+            <CheckBox
+                android:id="@+id/playCheck3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:onClick="onClick"
+                android:text="Play" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/channelButton4"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:includeFontPadding="false"
+                android:minHeight="0dp"
+                android:onClick="onClick"
+                android:text="Ch4"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="Ch4"
+                android:textAlignment="center"
+                android:textColor="@android:color/holo_blue_light"
+                android:visibility="gone"
+                tools:layout_editor_absoluteX="7dp"
+                tools:layout_editor_absoluteY="25dp" />
+
+            <SeekBar
+                android:id="@+id/dimmerBar4"
+                style="@android:style/Widget.Material.SeekBar"
+                android:layout_width="479dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:max="255"
+                android:paddingBottom="1dp"
+                android:progress="128"
+                tools:layout_editor_absoluteX="47dp"
+                tools:layout_editor_absoluteY="267dp" />
+
+            <CheckBox
+                android:id="@+id/playCheck4"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:onClick="onClick"
+                android:text="Play" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/channelButton5"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:includeFontPadding="false"
+                android:minHeight="0dp"
+                android:onClick="onClick"
+                android:text="Ch5"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="Ch5"
+                android:textAlignment="center"
+                android:textColor="@android:color/holo_blue_light"
+                android:visibility="gone"
+                tools:layout_editor_absoluteX="7dp"
+                tools:layout_editor_absoluteY="25dp" />
+
+            <SeekBar
+                android:id="@+id/dimmerBar5"
+                style="@android:style/Widget.Material.SeekBar"
+                android:layout_width="479dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:max="255"
+                android:paddingBottom="1dp"
+                android:progress="128"
+                tools:layout_editor_absoluteX="47dp"
+                tools:layout_editor_absoluteY="267dp" />
+
+            <CheckBox
+                android:id="@+id/playCheck5"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:onClick="onClick"
+                android:text="Play" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/channelButton6"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:includeFontPadding="false"
+                android:minHeight="0dp"
+                android:onClick="onClick"
+                android:text="Ch6"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="Ch6"
+                android:textAlignment="center"
+                android:textColor="@android:color/holo_blue_light"
+                android:visibility="gone"
+                tools:layout_editor_absoluteX="7dp"
+                tools:layout_editor_absoluteY="25dp" />
+
+            <SeekBar
+                android:id="@+id/dimmerBar6"
+                style="@android:style/Widget.Material.SeekBar"
+                android:layout_width="479dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:max="255"
+                android:paddingBottom="1dp"
+                android:progress="128"
+                tools:layout_editor_absoluteX="47dp"
+                tools:layout_editor_absoluteY="267dp" />
+
+            <CheckBox
+                android:id="@+id/playCheck6"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:onClick="onClick"
+                android:text="Play" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/channelButton7"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:includeFontPadding="false"
+                android:minHeight="0dp"
+                android:onClick="onClick"
+                android:text="Ch7"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="Ch7"
+                android:textAlignment="center"
+                android:textColor="@android:color/holo_blue_light"
+                android:visibility="gone"
+                tools:layout_editor_absoluteX="7dp"
+                tools:layout_editor_absoluteY="25dp" />
+
+            <SeekBar
+                android:id="@+id/dimmerBar7"
+                style="@android:style/Widget.Material.SeekBar"
+                android:layout_width="479dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:max="255"
+                android:paddingBottom="1dp"
+                android:progress="128"
+                tools:layout_editor_absoluteX="47dp"
+                tools:layout_editor_absoluteY="267dp" />
+
+            <CheckBox
+                android:id="@+id/playCheck7"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:onClick="onClick"
+                android:text="Play" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/channelButton8"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:includeFontPadding="false"
+                android:minHeight="0dp"
+                android:onClick="onClick"
+                android:text="Ch8"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="Ch8"
+                android:textAlignment="center"
+                android:textColor="@android:color/holo_blue_light"
+                android:visibility="gone"
+                tools:layout_editor_absoluteX="7dp"
+                tools:layout_editor_absoluteY="25dp" />
+
+            <SeekBar
+                android:id="@+id/dimmerBar8"
+                style="@android:style/Widget.Material.SeekBar"
+                android:layout_width="479dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:max="255"
+                android:paddingBottom="1dp"
+                android:progress="128"
+                tools:layout_editor_absoluteX="47dp"
+                tools:layout_editor_absoluteY="267dp" />
+
+            <CheckBox
+                android:id="@+id/playCheck8"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:onClick="onClick"
+                android:text="Play" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <MultiAutoCompleteTextView
+        android:id="@+id/controllerDebugText"
+        android:layout_width="0dp"
+        android:layout_height="262dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@android:color/darker_gray"
+        android:backgroundTint="@android:color/darker_gray"
+        android:backgroundTintMode="src_over"
+        android:editable="false"
+        android:gravity="top|right"
+        android:inputType="none"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:text="ssdfsdfs"
+        android:textAlignment="textStart"
+        android:textColor="@android:color/white"
+        android:textSize="10sp"
+        android:verticalScrollbarPosition="right"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <MultiAutoCompleteTextView
+        android:id="@+id/multiAutoCompleteTextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/darker_gray"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:backgroundTintMode="src_over"
+        android:editable="false"
+        android:gravity="right"
+        android:inputType="none"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:text="adasd fdsaf asdfasdfasdf"
+        android:textAlignment="textStart"
+        android:textColor="@android:color/white"
+        android:textSize="10sp"
+        android:verticalScrollbarPosition="right"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:text="sdfsfsd" />
+
+</android.support.constraint.ConstraintLayout>
