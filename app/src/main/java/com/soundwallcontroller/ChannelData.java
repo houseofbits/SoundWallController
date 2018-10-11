@@ -68,25 +68,25 @@ public class ChannelData {
         if(index > channels.length-1)return;
         channels[index].value = value;
         float fval = (float)value / 256.0f;
-        soundChannelMixJNI(index,
-                channels[index].audioALeft * fval,
-                channels[index].audioARight * fval,
-                channels[index].audioBLeft * fval,
-                channels[index].audioBRight * fval
-                );
+//        soundChannelMixJNI(index,
+//                channels[index].audioALeft * fval,
+//                channels[index].audioARight * fval,
+//                channels[index].audioBLeft * fval,
+//                channels[index].audioBRight * fval
+//                );
     }
     public void playStop(int index, boolean play){
         if(play){
-            playSoundJNI(index);
+        //    playSoundJNI(index);
             setChannelValue(index);
             channels[index].isPlaying = true;
         }else{
-            stopSoundJNI(index);
+        //    stopSoundJNI(index);
             channels[index].isPlaying = false;
         }
     }
     public boolean isPlaying(int index){
-        return isPlayingSoundJNI(index);
+        return false;//isPlayingSoundJNI(index);
     }
     public void loadSettings(SharedPreferences settings){
         for(int i=0; i<8; i++){
@@ -169,9 +169,9 @@ public class ChannelData {
         return channels[index].virtualPosY;
     }
 
-    public native int loadSoundJNI(String filename, int index);
-    private native int playSoundJNI(int index);
-    private native int stopSoundJNI(int index);
-    private native int soundChannelMixJNI(int index, float Al, float Ar, float Bl, float Br);
-    private native boolean isPlayingSoundJNI(int index);
+//    public native int loadSoundJNI(String filename, int index);
+//    private native int playSoundJNI(int index);
+//    private native int stopSoundJNI(int index);
+//    private native int soundChannelMixJNI(int index, float Al, float Ar, float Bl, float Br);
+//    private native boolean isPlayingSoundJNI(int index);
 }

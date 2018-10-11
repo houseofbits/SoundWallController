@@ -479,8 +479,8 @@ public class MainActivity
 
     public void updateChannelMixerTarget(){
         channelData.calculateVirtualPosition(editSelectedChannel);
-        //MovableFloatingActionButton target = (MovableFloatingActionButton)findViewById(R.id.channelMixerTargetButton);
-        //target.setUnitLengthPosition(channelData.getVirtualPosX(editSelectedChannel), channelData.getVirtualPosY(editSelectedChannel));
+        MovableFloatingActionButton target = (MovableFloatingActionButton)findViewById(R.id.channelMixerTargetButton);
+        target.setUnitLengthPosition(channelData.getVirtualPosX(editSelectedChannel), channelData.getVirtualPosY(editSelectedChannel));
     }
 
     /**

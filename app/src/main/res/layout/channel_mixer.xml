@@ -85,7 +85,7 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/cutom_border">
 
-            <com.nativetest.nativetestapp.MovableFloatingActionButton
+            <com.soundwallcontroller.MovableFloatingActionButton
                 android:id="@+id/channelMixerTargetButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
