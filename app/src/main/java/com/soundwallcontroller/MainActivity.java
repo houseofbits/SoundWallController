@@ -3,6 +3,7 @@ package com.soundwallcontroller;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.AssetFileDescriptor;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
 import android.media.AudioDeviceInfo;
@@ -29,6 +30,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.Vector;
 
@@ -45,14 +47,6 @@ public class MainActivity
     public static final String savedPrefsName = "NativeTestAppSettings";
     private String debugData = "";
     public int editSelectedChannel = 0;
-
-//    MediaPlayer mediaPlayerA = null;
-//    MediaPlayer mediaPlayerB = null;
-//
-//    AudioDeviceInfo usbAudioDeviceA = null;
-//    AudioDeviceInfo usbAudioDeviceB = null;
-
-//    public OSSTest ossTest = new OSSTest(this);
 
     // Used to load the 'native-lib' library on application startup.
     static {
@@ -189,8 +183,6 @@ public class MainActivity
 
         this.addDebugString("Starting Native Test App");
 
-        //ossTest.connectDevice();
-
         AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         try {
             AudioDeviceInfo[] adi = audioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS);
@@ -210,69 +202,6 @@ public class MainActivity
 
         }
 
-//        mediaPlayerA = MediaPlayer.create(this, R.raw.voice_1);
-//        if(mediaPlayerA != null){
-//            mediaPlayerA.setLooping(true);
-//            mediaPlayerA.setVolume(1,0);
-//            mediaPlayerA.start();
-//        }
-//
-//        mediaPlayerB = MediaPlayer.create(this, R.raw.voice_2);
-//        if(mediaPlayerB != null){
-//            mediaPlayerB.setLooping(true);
-//            mediaPlayerB.setVolume(0,1);
-//            mediaPlayerB.start();
-//        }
-
-//        //https://stackoverflow.com/questions/26379441/playing-multiple-songs-with-mediaplayer-at-the-same-time-only-one-is-really-pla
-//        class SynchronizedSound implements MediaPlayer.OnCompletionListener {
-//
-//            private int resourceId = 0;
-//            public Vector<MediaPlayer>  mediaTargets  = new Vector<>();
-//            public Vector<Float>        outputMix = new Vector<>();
-//
-//            public SynchronizedSound(int resid){
-//                resourceId = resid;
-//            }
-//            public void addTargetDevice(Context context, AudioDeviceInfo deviceInfo){
-//                MediaPlayer p = MediaPlayer.create(context, resourceId);
-//                p.setLooping(false);
-//                p.setOnCompletionListener(this);
-////                p.setPreferredDevice(deviceInfo); //api level 28 (android 9.0) :(
-//                mediaTargets.add(p);
-//            }
-//            public void mixOutputs(){
-//
-//            }
-//
-//            public void onCompletion(MediaPlayer theMediaPlayer) {
-//
-//            }
-//        };
-//        class SynchronizedSoundManager{
-//
-//            public void addSound(String name, int resourceId){
-//
-//            }
-//
-//            public void addTargetDevice(Context context, AudioDeviceInfo deviceInfo){
-//
-//            }
-//
-//            public void mixOutputs(String name){
-//
-//            }
-//        }
-
-
-//        mMediaPlayer.setOnCompletionListener(new OnCompletionListener() {
-//
-//            public void onCompletion(MediaPlayer theMediaPlayer) {
-//                mParent.playNextAudio();
-//                mParent = null;
-//            }
-
-
         UsbManager usbManager = (UsbManager) getSystemService(USB_SERVICE);
 
         for (final UsbDevice usbDevice : usbManager.getDeviceList().values()) {
@@ -290,18 +219,6 @@ public class MainActivity
 
         checkController();
 
-        //org.fmod.FMOD.init(this);
-
-        //createFMODJNI();
-        channelData.loadSoundJNI("file:///android_asset/voice_1.wav",0);
-        channelData.loadSoundJNI("file:///android_asset/voice_2.wav",1);
-        channelData.loadSoundJNI("file:///android_asset/voice_3.wav",2);
-        channelData.loadSoundJNI("file:///android_asset/voice_4.wav",3);
-        channelData.loadSoundJNI("file:///android_asset/voice_5.wav",4);
-        channelData.loadSoundJNI("file:///android_asset/voice_6.wav",5);
-        channelData.loadSoundJNI("file:///android_asset/voice_7.wav",6);
-        channelData.loadSoundJNI("file:///android_asset/voice_8.wav",7);
-
         new MyTask().execute("test");
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -312,6 +229,25 @@ public class MainActivity
             int resID = getResources().getIdentifier("playCheck"+Integer.toString(i+1), "id", getPackageName());
             ((CheckBox) findViewById(resID)).setChecked(channelData.isPlaying(i));
         }
+
+        System.loadLibrary("PlayerExample");    // load native library
+
+        StartAudio(48000, 480);             // start audio engine
+
+
+        // Files under res/raw are not zipped, just copied into the APK.
+        // Get the offset and length to know where our file is located.
+        AssetFileDescriptor fd = getResources().openRawResourceFd(R.raw.voice_1);
+        int fileOffset = (int)fd.getStartOffset();
+        int fileLength = (int)fd.getLength();
+        try {
+            fd.getParcelFileDescriptor().close();
+        } catch (IOException e) {
+            this.addDebugString("Close error");
+        }
+        String path = getPackageResourcePath();         // get path to APK package
+        OpenFile(path, fileOffset, fileLength);         // open audio file from APK
+
 
         this.updateJNIDebugStrings();
 
@@ -489,4 +425,12 @@ public class MainActivity
      */
     public native String getDebugStringJNI();
     public native int CRC8JNI(int data[], int len);
+
+
+    private native void StartAudio(int samplerate, int buffersize);
+    private native void OpenFile(String path, int offset, int length);
+    private native void TogglePlayback();
+    private native void onForeground();
+    private native void onBackground();
+    private native void Cleanup();
 }

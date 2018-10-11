@@ -8,7 +8,7 @@ void addConsoleLine(std::string str){
 }
 
 extern "C" JNIEXPORT jstring JNICALL
-Java_com_nativetest_nativetestapp_MainActivity_getDebugStringJNI(
+Java_com_soundwallcontroller_MainActivity_getDebugStringJNI(
         JNIEnv* env,
         jobject) {
     std::string str = consoleStr;
@@ -19,7 +19,7 @@ Java_com_nativetest_nativetestapp_MainActivity_getDebugStringJNI(
 //CRC-8 - based on the CRC8 formulas by Dallas/Maxim
 //code released under the therms of the GNU GPL 3.0 license
 extern "C" JNIEXPORT jint JNICALL
-Java_com_nativetest_nativetestapp_MainActivity_CRC8JNI(
+Java_com_soundwallcontroller_MainActivity_CRC8JNI(
         JNIEnv* env,
         jobject,
         jintArray jData,
