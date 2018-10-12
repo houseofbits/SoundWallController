@@ -68,13 +68,13 @@ public class SuperpoweredUSBAudio {
                 case 1: // Audio device.
                     if (handler != null) handler.onUSBAudioDeviceAttached(id);
                     break;
-                case 2: // MIDI device.
-                    if (handler != null) handler.onUSBMIDIDeviceAttached(id);
-                    break;
-                case 3: // Audio and MIDI device.
-                    if (handler != null) handler.onUSBAudioDeviceAttached(id);
-                    if (handler != null) handler.onUSBMIDIDeviceAttached(id);
-                    break;
+//                case 2: // MIDI device.
+//                    if (handler != null) handler.onUSBMIDIDeviceAttached(id);
+//                    break;
+//                case 3: // Audio and MIDI device.
+//                    if (handler != null) handler.onUSBAudioDeviceAttached(id);
+//                    if (handler != null) handler.onUSBMIDIDeviceAttached(id);
+//                    break;
             }
         }
     }

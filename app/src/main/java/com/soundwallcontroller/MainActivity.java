@@ -39,7 +39,7 @@ import java.util.Vector;
 
 public class MainActivity
         extends AppCompatActivity
-        implements View.OnClickListener {
+        implements View.OnClickListener, SuperpoweredUSBAudioHandler {
 
     private SerialComunication serial = new SerialComunication(this);
     public ChannelData channelData = new ChannelData();
@@ -209,48 +209,58 @@ public class MainActivity
             String name = usbDevice.getDeviceName();
             String productName = usbDevice.getProductName();
             String serialNumber = usbDevice.getSerialNumber();
-            this.addDebugString("------------------------");
-            this.addDebugString("USB Device name: "+name);
+            this.addDebugString("------------ USB Device name: "+name+" ------------------");
             this.addDebugString(" Product name: "+productName);
             this.addDebugString(" Serial number: "+serialNumber);
         }
 
-        serial.connectDevice();
-
-        checkController();
-
-        new MyTask().execute("test");
+        //Serial and input
+//        serial.connectDevice();
+//        checkController();
+//        new MyTask().execute("test");
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        loadAppPreferences();
+        //Set up checkbox states
+//        loadAppPreferences();
+//        for(int i=0; i<8; i++){
+//            int resID = getResources().getIdentifier("playCheck"+Integer.toString(i+1), "id", getPackageName());
+//            ((CheckBox) findViewById(resID)).setChecked(channelData.isPlaying(i));
+//        }
 
-        for(int i=0; i<8; i++){
-            int resID = getResources().getIdentifier("playCheck"+Integer.toString(i+1), "id", getPackageName());
-            ((CheckBox) findViewById(resID)).setChecked(channelData.isPlaying(i));
-        }
+//        System.loadLibrary("PlayerExample");            // load native library
+//
+//        StartAudio(48000, 480);             // start audio engine
+//
+//        // Files under res/raw are not zipped, just copied into the APK.
+//        // Get the offset and length to know where our file is located.
+//        AssetFileDescriptor fd = getResources().openRawResourceFd(R.raw.voice_1);
+//        int fileOffset = (int)fd.getStartOffset();
+//        int fileLength = (int)fd.getLength();
+//        try {
+//            fd.getParcelFileDescriptor().close();
+//        } catch (IOException e) {
+//            this.addDebugString("Close error");
+//        }
+//        String path = getPackageResourcePath();         // get path to APK package
+//        OpenFile(path, fileOffset, fileLength);         // open audio file from APK
 
-        System.loadLibrary("PlayerExample");    // load native library
 
-        StartAudio(48000, 480);             // start audio engine
-
-
-        // Files under res/raw are not zipped, just copied into the APK.
-        // Get the offset and length to know where our file is located.
-        AssetFileDescriptor fd = getResources().openRawResourceFd(R.raw.voice_1);
-        int fileOffset = (int)fd.getStartOffset();
-        int fileLength = (int)fd.getLength();
-        try {
-            fd.getParcelFileDescriptor().close();
-        } catch (IOException e) {
-            this.addDebugString("Close error");
-        }
-        String path = getPackageResourcePath();         // get path to APK package
-        OpenFile(path, fileOffset, fileLength);         // open audio file from APK
-
+        SuperpoweredUSBAudio usbAudio = new SuperpoweredUSBAudio(getApplicationContext(), this);
+        usbAudio.check();
 
         this.updateJNIDebugStrings();
 
+    }
+
+
+    public void onUSBAudioDeviceAttached(int deviceIdentifier) {
+    }
+
+    public void onUSBMIDIDeviceAttached(int deviceIdentifier) {
+    }
+
+    public void onUSBDeviceDetached(int deviceIdentifier) {
     }
 
     @Override
@@ -427,10 +437,10 @@ public class MainActivity
     public native int CRC8JNI(int data[], int len);
 
 
-    private native void StartAudio(int samplerate, int buffersize);
-    private native void OpenFile(String path, int offset, int length);
-    private native void TogglePlayback();
-    private native void onForeground();
-    private native void onBackground();
-    private native void Cleanup();
+//    private native void StartAudio(int samplerate, int buffersize);
+//    private native void OpenFile(String path, int offset, int length);
+//    private native void TogglePlayback();
+//    private native void onForeground();
+//    private native void onBackground();
+//    private native void Cleanup();
 }

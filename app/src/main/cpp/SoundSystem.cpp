@@ -1,7 +1,7 @@
 //
 // Created by KristsPudzens on 11.10.2018.
 //
-
+#include "SoundSystem.h"
 #include <jni.h>
 #include <string>
 #include <android/log.h>
@@ -14,10 +14,9 @@
 #include <SLES/OpenSLES_AndroidConfiguration.h>
 #include <SLES/OpenSLES.h>
 
-static SuperpoweredAndroidAudioIO *audioIO;
-static SuperpoweredAdvancedAudioPlayer *player;
-static float *floatBuffer;
-
+//static SuperpoweredAndroidAudioIO *audioIO;
+//static SuperpoweredAdvancedAudioPlayer *player;
+//static float *floatBuffer;
 
 // This is called periodically by the audio engine.
 static bool audioProcessing (
@@ -26,14 +25,16 @@ static bool audioProcessing (
         int numberOfFrames,         // number of frames to process
         int __unused samplerate     // sampling rate
 ) {
-    if (player->process(floatBuffer, false, (unsigned int)numberOfFrames)) {
-        SuperpoweredFloatToShortInt(floatBuffer, audio, (unsigned int)numberOfFrames);
-        return true;
-    } else {
-        return false;
-    }
+//    if (player->process(floatBuffer, false, (unsigned int)numberOfFrames)) {
+//        SuperpoweredFloatToShortInt(floatBuffer, audio, (unsigned int)numberOfFrames);
+//        return true;
+//    } else {
+//        return false;
+//    }
+    return false;
 }
 
+/*
 // Called by the player.
 static void playerEventCallback (
         void * __unused clientData,
@@ -138,15 +139,10 @@ Java_com_soundwallcontroller_MainActivity_Cleanup (
     delete player;
     free(floatBuffer);
 }
-
-
-// Beautifying the ugly Java-C++ bridge (JNI) with these macros.
-#define PID com_soundwallcontroller_SuperpoweredUSBAudio // Java package name and class name. Don't forget to update when you copy this code.
-#define MAKE_JNI_FUNCTION(r, n, p) extern "C" JNIEXPORT r JNICALL Java_ ## p ## _ ## n
-#define JNI(r, n, p) MAKE_JNI_FUNCTION(r, n, p)
+*/
 
 // This is called by the SuperpoweredUSBAudio Java object when a USB device is connected.
-JNI(jint, onConnect, PID) (
+JNI(jint, SuperpoweredUSBAudio, onConnect) (
         JNIEnv *env,
         jobject __unused obj,
         jint deviceID,
@@ -158,12 +154,11 @@ JNI(jint, onConnect, PID) (
     int r = SuperpoweredUSBSystem::onConnect(deviceID, fd, (unsigned char *)rd, dataBytes);
     env->ReleaseByteArrayElements(rawDescriptor, rd, JNI_ABORT);
 
-    // r is 0 if SuperpoweredUSBSystem can't do anything with the connected device.
-    // r & 2 is true if the device has MIDI. Start receiving events.
-    //if (r & 2) SuperpoweredUSBMIDI::startIO(deviceID, NULL, onMidiReceived);
-
     // r & 1 is true if the device has audio. Start output.
     if (r & 1) {
+
+        addConsoleLine("SuperpoweredUSB device: "+std::to_string(deviceID));
+
         // allocate struct for sine wave oscillator
 //        sineWaveOutput *swo = (sineWaveOutput *)malloc(sizeof(sineWaveOutput));
 //        if (swo) {
@@ -189,7 +184,7 @@ JNI(jint, onConnect, PID) (
 }
 
 // This is called by the SuperpoweredUSBAudio Java object when a USB device is disconnected.
-JNI(void, onDisconnect, PID) (
+JNI(void, SuperpoweredUSBAudio, onDisconnect) (
         JNIEnv * __unused env,
         jobject __unused obj,
         jint deviceID
